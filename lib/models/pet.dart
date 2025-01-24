@@ -1,6 +1,6 @@
 class Pet {
   final String name;
-  //TODO: image
+  final String profileImage;
   final String species;
   final String breed;
   final String gender;
@@ -9,6 +9,7 @@ class Pet {
 
   Pet(
       {required this.name,
+      this.profileImage = '',
       required this.species,
       required this.breed,
       required this.gender,

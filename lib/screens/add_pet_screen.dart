@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -21,6 +24,15 @@ class _AddPetScreenState extends State<AddPetScreen> {
 
   Future<void> _pickImage() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _image = pickedFile;
+      });
+    }
+  }
+
+  Future<void> _takePicture() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.camera);
     if (pickedFile != null) {
       setState(() {
         _image = pickedFile;
@@ -91,9 +103,40 @@ class _AddPetScreenState extends State<AddPetScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const CircleAvatar(
-                radius: 50.0,
-                backgroundColor: Colors.white,
+              GestureDetector(
+                onTap: () {
+                  showCupertinoModalPopup(
+                    context: context,
+                    builder: (context) => CupertinoActionSheet(
+                      actions: <CupertinoActionSheetAction>[
+                        CupertinoActionSheetAction(
+                          onPressed: () {
+                            _pickImage();
+                            Navigator.pop(context);
+                          },
+                          child: const Text('Gallery'),
+                        ),
+                        CupertinoActionSheetAction(
+                          onPressed: () {
+                            _takePicture();
+                            Navigator.pop(context);
+                          },
+                          child: const Text('Camera'),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                child: CircleAvatar(
+                  radius: 50.0,
+                  backgroundColor: Colors.white,
+                  backgroundImage:
+                      _image != null ? FileImage(File(_image!.path)) : null,
+                  child: _image == null
+                      ? const Icon(Icons.camera_alt,
+                          size: 50, color: Colors.grey)
+                      : null,
+                ),
               ),
               const SizedBox(height: 32.0),
               CustomInputField(
@@ -201,6 +244,7 @@ class _AddPetScreenState extends State<AddPetScreen> {
                     }
                     final pet = Pet(
                       name: _nameController.text,
+                      profileImage: _image?.path ?? '',
                       species: _selectedPet ?? '',
                       breed: _breedController.text,
                       gender: _selectedGender ?? '',

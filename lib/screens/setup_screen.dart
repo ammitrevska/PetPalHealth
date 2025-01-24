@@ -17,12 +17,17 @@ class SetupScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           title: const Text('Home'),
-          actions: const [
+          actions: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 18.0),
+              padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: CircleAvatar(
                 radius: 30.0,
                 backgroundColor: Colors.white,
+                backgroundImage: pet?.profileImage != null
+                    ? NetworkImage(pet!.profileImage)
+                    : const AssetImage(
+                        'assets/images/cat.png',
+                      ),
               ),
             ),
           ],
