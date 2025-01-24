@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:petpal_health/constants.dart';
 import 'package:petpal_health/provider/pet_provider.dart';
+import 'package:petpal_health/provider/task_provider.dart';
 import 'package:petpal_health/screens/add_pet_screen.dart';
-import 'package:petpal_health/screens/add_task_screen.dart';
 import 'package:petpal_health/screens/login_screen.dart';
 import 'package:petpal_health/screens/map_screen.dart';
 import 'package:petpal_health/screens/notifications_screen.dart';
-import 'package:petpal_health/screens/setup_screen.dart';
+import 'package:petpal_health/screens/home_screen.dart';
 import 'package:petpal_health/screens/sign_up_screen.dart';
 import 'package:petpal_health/screens/tips_screen.dart';
 import 'package:provider/provider.dart';
@@ -20,8 +20,11 @@ class PetPalHealth extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => PetProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => PetProvider()),
+        ChangeNotifierProvider(create: (_) => TaskProvider()),
+      ],
       child: MaterialApp(
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.transparent,
@@ -34,9 +37,8 @@ class PetPalHealth extends StatelessWidget {
         routes: {
           Pages.loginScreen: (context) => const LoginScreen(),
           Pages.signupScreen: (context) => const SignUpScreen(),
-          Pages.setUpScreen: (context) => const SetupScreen(),
+          Pages.setUpScreen: (context) => const HomeScreen(),
           Pages.addPetScreen: (context) => const AddPetScreen(),
-          Pages.addTaskScreen: (context) => AddTaskScreen(),
           Pages.notificationsScreen: (context) => const NotificationsScreen(),
           Pages.mapScreen: (context) => const MapScreen(),
           Pages.tipsScreen: (context) => const TipsScreen(),

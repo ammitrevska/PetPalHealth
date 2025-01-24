@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:petpal_health/models/task.dart';
 
-class TaskProvider extends ChangeNotifier {
-  Task? _task;
+class TaskProvider with ChangeNotifier {
+  List<Task> _tasks = [];
 
-  Task? get task => _task;
+  List<Task> get tasks => _tasks;
 
-  void setPet(Task pet) {
-    _task = task;
+  void addTask(Task task) {
+    _tasks.add(task);
     notifyListeners();
   }
 }

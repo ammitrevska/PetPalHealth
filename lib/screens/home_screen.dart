@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:petpal_health/provider/pet_provider.dart';
+import 'package:petpal_health/provider/task_provider.dart';
+import 'package:petpal_health/widgets/add_task_bottomsheet.dart';
 import 'package:provider/provider.dart';
 import 'package:petpal_health/constants.dart';
 import 'package:petpal_health/widgets/bottom_nav_bar.dart';
 import 'package:petpal_health/widgets/gradient_background.dart';
 
-class SetupScreen extends StatelessWidget {
-  const SetupScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final pet = Provider.of<PetProvider>(context).pet;
+    final tasks = Provider.of<TaskProvider>(context).tasks;
 
     return GradientBackground(
       child: Scaffold(
@@ -134,19 +137,38 @@ class SetupScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Text(
-                        'No daily tasks to display',
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
+                    if (tasks.isEmpty)
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Text(
+                          'No daily tasks to display',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      )
+                    else
+                      ...tasks.map(
+                        (task) => ListTile(
+                          title: Text(task.name),
+                          leading: Icon(
+                            task.category.icon,
+                            size: 50.0,
+                            color: Colors.black,
+                          ),
+                          subtitle: Text(
+                              '${task.category.name} - ${task.repetition} times / day'),
                         ),
                       ),
-                    ),
                     TextButton.icon(
                       onPressed: () {
-                        Navigator.pushNamed(context, Pages.addTaskScreen);
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) {
+                            return AddTaskBottomSheet();
+                          },
+                        );
                       },
                       label: const Text('Add a task'),
                       icon: const Icon(Icons.add),

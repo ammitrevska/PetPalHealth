@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:petpal_health/constants.dart';
 import 'package:petpal_health/models/category.dart';
 
-// ignore: must_be_immutable
-class TaskCategoryDropdown extends StatelessWidget {
+class TaskCategoryDropdown extends StatefulWidget {
   final Function(Category) onCategorySelected;
 
-  TaskCategoryDropdown({required this.onCategorySelected, super.key});
+  const TaskCategoryDropdown({super.key, required this.onCategorySelected});
 
+  @override
+  State<TaskCategoryDropdown> createState() => _TaskCategoryDropdownState();
+}
+
+class _TaskCategoryDropdownState extends State<TaskCategoryDropdown> {
   Category? _selectedCategory;
 
   final List<Category> _categories = [
@@ -22,23 +26,14 @@ class TaskCategoryDropdown extends StatelessWidget {
     return DropdownButton<Category>(
       hint: const Text('Select Category'),
       value: _selectedCategory,
-      onChanged: (Category? newCategory) {
-        if (newCategory != null) {
-          onCategorySelected(newCategory);
+      onChanged: (value) {
+        setState(() {
+          _selectedCategory = value;
+        });
+        if (_selectedCategory != null) {
+          widget.onCategorySelected(_selectedCategory!);
         }
       },
-      // decoration: InputDecoration(
-      //   labelText: 'Category',
-      //   filled: true,
-      //   fillColor: Colors.white,
-      //   enabledBorder: OutlineInputBorder(
-      //     borderSide: const BorderSide(
-      //       color: Colors.transparent,
-      //       width: 0,
-      //     ),
-      //     borderRadius: BorderRadius.circular(15.0),
-      //   ),
-      // ),
       items: _categories.map((category) {
         return DropdownMenuItem<Category>(
           value: category,
