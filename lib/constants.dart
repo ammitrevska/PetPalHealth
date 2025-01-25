@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:petpal_health/screens/add_pet_screen.dart';
+import 'package:petpal_health/screens/calendar_screen.dart';
 import 'package:petpal_health/screens/login_screen.dart';
 import 'package:petpal_health/screens/map_screen.dart';
 import 'package:petpal_health/screens/notifications_screen.dart';
@@ -18,4 +19,5 @@ class Pages {
   static String mapScreen = '$MapScreen';
   static String notificationsScreen = '$NotificationsScreen';
   static String tipsScreen = '$TipsScreen';
+  static String calendarScreen = '$CalendarScreen';
 }

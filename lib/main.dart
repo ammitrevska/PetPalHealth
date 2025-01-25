@@ -3,6 +3,7 @@ import 'package:petpal_health/constants.dart';
 import 'package:petpal_health/provider/pet_provider.dart';
 import 'package:petpal_health/provider/task_provider.dart';
 import 'package:petpal_health/screens/add_pet_screen.dart';
+import 'package:petpal_health/screens/calendar_screen.dart';
 import 'package:petpal_health/screens/login_screen.dart';
 import 'package:petpal_health/screens/map_screen.dart';
 import 'package:petpal_health/screens/notifications_screen.dart';
@@ -39,6 +40,7 @@ class PetPalHealth extends StatelessWidget {
           Pages.signupScreen: (context) => const SignUpScreen(),
           Pages.setUpScreen: (context) => const HomeScreen(),
           Pages.addPetScreen: (context) => const AddPetScreen(),
+          Pages.calendarScreen: (context) => const CalendarScreen(),
           Pages.notificationsScreen: (context) => const NotificationsScreen(),
           Pages.mapScreen: (context) => const MapScreen(),
           Pages.tipsScreen: (context) => const TipsScreen(),

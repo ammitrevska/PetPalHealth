@@ -11,12 +11,15 @@ class BottomNavBar {
         Navigator.popAndPushNamed(context, Pages.setUpScreen);
         break;
       case 1:
-        Navigator.popAndPushNamed(context, Pages.mapScreen);
+        Navigator.popAndPushNamed(context, Pages.calendarScreen);
         break;
       case 2:
-        Navigator.popAndPushNamed(context, Pages.notificationsScreen);
+        Navigator.popAndPushNamed(context, Pages.mapScreen);
         break;
       case 3:
+        Navigator.popAndPushNamed(context, Pages.notificationsScreen);
+        break;
+      case 4:
         Navigator.popAndPushNamed(context, Pages.tipsScreen);
         break;
     }
@@ -34,6 +37,10 @@ class BottomNavBar {
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.home), // Home icon
+          label: '',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.calendar_today_rounded), // Calendar icon
           label: '',
         ),
         BottomNavigationBarItem(

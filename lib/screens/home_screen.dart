@@ -118,7 +118,9 @@ class HomeScreen extends StatelessWidget {
                                 TextButton.icon(
                                   onPressed: () {
                                     Navigator.pushNamed(
-                                        context, Pages.addPetScreen);
+                                      context,
+                                      Pages.addPetScreen,
+                                    );
                                   },
                                   label: const Text('Add a pet'),
                                   icon: const Icon(Icons.add),

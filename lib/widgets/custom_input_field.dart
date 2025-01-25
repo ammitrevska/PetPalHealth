@@ -6,6 +6,7 @@ class CustomInputField extends StatefulWidget {
   final bool isPassword;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
+  final int? maxLines;
 
   const CustomInputField({
     super.key,
@@ -14,6 +15,7 @@ class CustomInputField extends StatefulWidget {
     this.isPassword = false,
     this.controller,
     this.keyboardType,
+    this.maxLines,
   });
 
   @override
@@ -23,6 +25,8 @@ class CustomInputField extends StatefulWidget {
 class _CustomInputFieldState extends State<CustomInputField> {
   @override
   Widget build(BuildContext context) {
+    final int? maxLines = widget.isPassword ? 1 : widget.maxLines ?? 1;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -32,6 +36,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
           controller: widget.controller,
           obscureText: widget.isPassword,
           keyboardType: widget.keyboardType,
+          maxLines: maxLines,
           decoration: InputDecoration(
             hintText: widget.hintText,
             border: OutlineInputBorder(
