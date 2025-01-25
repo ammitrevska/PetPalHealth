@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:petpal_health/constants.dart';
+import 'package:petpal_health/models/event.dart';
+import 'package:petpal_health/provider/event_provider.dart';
 import 'package:petpal_health/widgets/custom_input_field.dart';
+import 'package:provider/provider.dart';
 
 class AddEventBottomsheet extends StatelessWidget {
   AddEventBottomsheet({super.key});
@@ -52,8 +55,8 @@ class AddEventBottomsheet extends StatelessWidget {
                           DateTime? selectedDate = await showDatePicker(
                             context: context,
                             initialDate: DateTime.now(),
-                            firstDate: DateTime(1990),
-                            lastDate: DateTime.now(),
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime(2040),
                           );
 
                           if (selectedDate != null) {
@@ -91,7 +94,7 @@ class AddEventBottomsheet extends StatelessWidget {
                             hintText: 'Time',
                             label: 'Time',
                             isPassword: false,
-                            controller: _dateController,
+                            controller: _timeController,
                           ),
                         ),
                       ),
@@ -116,7 +119,37 @@ class AddEventBottomsheet extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (_eventNameController.text.isEmpty ||
+                      _dateController.text.isEmpty ||
+                      _timeController.text.isEmpty ||
+                      _descriptionController.text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Please fill out all fields'),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                    return;
+                  }
+
+                  DateTime selectedDate = DateTime.parse(_dateController.text);
+                  TimeOfDay selectedTime = TimeOfDay(
+                    hour: int.parse(_timeController.text.split(':')[0]),
+                    minute: int.parse(_timeController.text.split(':')[1]),
+                  );
+
+                  final event = Event(
+                    title: _eventNameController.text,
+                    date: selectedDate,
+                    time: selectedTime,
+                    description: _descriptionController.text,
+                  );
+
+                  Provider.of<EventProvider>(context, listen: false)
+                      .addEvent(event);
+                  Navigator.pop(context);
+                },
                 style: TextButton.styleFrom(
                   backgroundColor: kButtonColor,
                   foregroundColor: kTextColor,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:petpal_health/models/task.dart';
 
 class TaskProvider with ChangeNotifier {
-  List<Task> _tasks = [];
+  final List<Task> _tasks = [];
 
   List<Task> get tasks => _tasks;
 

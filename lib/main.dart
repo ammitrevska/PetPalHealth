@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:petpal_health/constants.dart';
+import 'package:petpal_health/provider/event_provider.dart';
 import 'package:petpal_health/provider/pet_provider.dart';
 import 'package:petpal_health/provider/task_provider.dart';
 import 'package:petpal_health/screens/add_pet_screen.dart';
@@ -25,6 +26,7 @@ class PetPalHealth extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => PetProvider()),
         ChangeNotifierProvider(create: (_) => TaskProvider()),
+        ChangeNotifierProvider(create: (_) => EventProvider()),
       ],
       child: MaterialApp(
         theme: ThemeData(
