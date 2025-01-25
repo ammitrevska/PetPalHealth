@@ -17,9 +17,6 @@ class BottomNavBar {
         Navigator.popAndPushNamed(context, Pages.mapScreen);
         break;
       case 3:
-        Navigator.popAndPushNamed(context, Pages.notificationsScreen);
-        break;
-      case 4:
         Navigator.popAndPushNamed(context, Pages.factsScreen);
         break;
     }
@@ -45,10 +42,6 @@ class BottomNavBar {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.map), // Map icon
-          label: '',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.notifications), // Notifications icon
           label: '',
         ),
         BottomNavigationBarItem(

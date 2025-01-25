@@ -25,7 +25,7 @@ class CustomInputField extends StatefulWidget {
 class _CustomInputFieldState extends State<CustomInputField> {
   @override
   Widget build(BuildContext context) {
-    final int? maxLines = widget.isPassword ? 1 : widget.maxLines ?? 1;
+    final int maxLines = widget.isPassword ? 1 : widget.maxLines ?? 1;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

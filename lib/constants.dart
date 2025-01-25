@@ -3,7 +3,6 @@ import 'package:petpal_health/screens/add_pet_screen.dart';
 import 'package:petpal_health/screens/calendar_screen.dart';
 import 'package:petpal_health/screens/login_screen.dart';
 import 'package:petpal_health/screens/map_screen.dart';
-import 'package:petpal_health/screens/notifications_screen.dart';
 import 'package:petpal_health/screens/home_screen.dart';
 import 'package:petpal_health/screens/sign_up_screen.dart';
 import 'package:petpal_health/screens/facts_screen.dart';
@@ -17,7 +16,6 @@ class Pages {
   static String homeScreen = '$HomeScreen';
   static String addPetScreen = '$AddPetScreen';
   static String mapScreen = '$MapScreen';
-  static String notificationsScreen = '$NotificationsScreen';
   static String factsScreen = '$FactsScreen';
   static String calendarScreen = '$CalendarScreen';
 }
