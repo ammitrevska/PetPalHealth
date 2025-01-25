@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:petpal_health/constants.dart';
 import 'package:petpal_health/provider/event_provider.dart';
+import 'package:petpal_health/provider/fact_provider.dart';
 import 'package:petpal_health/provider/pet_provider.dart';
 import 'package:petpal_health/provider/task_provider.dart';
 import 'package:petpal_health/screens/add_pet_screen.dart';
@@ -10,7 +11,8 @@ import 'package:petpal_health/screens/map_screen.dart';
 import 'package:petpal_health/screens/notifications_screen.dart';
 import 'package:petpal_health/screens/home_screen.dart';
 import 'package:petpal_health/screens/sign_up_screen.dart';
-import 'package:petpal_health/screens/tips_screen.dart';
+import 'package:petpal_health/screens/facts_screen.dart';
+import 'package:petpal_health/services/api_service.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -27,6 +29,8 @@ class PetPalHealth extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => PetProvider()),
         ChangeNotifierProvider(create: (_) => TaskProvider()),
         ChangeNotifierProvider(create: (_) => EventProvider()),
+        ChangeNotifierProvider(
+            create: (_) => FactProvider(apiService: ApiService())),
       ],
       child: MaterialApp(
         theme: ThemeData(
@@ -40,12 +44,12 @@ class PetPalHealth extends StatelessWidget {
         routes: {
           Pages.loginScreen: (context) => const LoginScreen(),
           Pages.signupScreen: (context) => const SignUpScreen(),
-          Pages.setUpScreen: (context) => const HomeScreen(),
+          Pages.homeScreen: (context) => const HomeScreen(),
           Pages.addPetScreen: (context) => const AddPetScreen(),
           Pages.calendarScreen: (context) => const CalendarScreen(),
           Pages.notificationsScreen: (context) => const NotificationsScreen(),
           Pages.mapScreen: (context) => const MapScreen(),
-          Pages.tipsScreen: (context) => const TipsScreen(),
+          Pages.factsScreen: (context) => const FactsScreen(),
         },
       ),
     );

@@ -8,7 +8,7 @@ class BottomNavBar {
   goScreen(int newScreen) {
     switch (newScreen) {
       case 0:
-        Navigator.popAndPushNamed(context, Pages.setUpScreen);
+        Navigator.popAndPushNamed(context, Pages.homeScreen);
         break;
       case 1:
         Navigator.popAndPushNamed(context, Pages.calendarScreen);
@@ -20,7 +20,7 @@ class BottomNavBar {
         Navigator.popAndPushNamed(context, Pages.notificationsScreen);
         break;
       case 4:
-        Navigator.popAndPushNamed(context, Pages.tipsScreen);
+        Navigator.popAndPushNamed(context, Pages.factsScreen);
         break;
     }
   }
@@ -29,7 +29,7 @@ class BottomNavBar {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       useLegacyColorScheme: false,
-      backgroundColor: const Color.fromRGBO(249, 235, 162, 0.27),
+      backgroundColor: Colors.transparent,
       selectedItemColor: kButtonColor,
       unselectedItemColor: Colors.white,
       iconSize: 38.0,

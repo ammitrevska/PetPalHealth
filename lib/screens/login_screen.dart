@@ -51,7 +51,7 @@ class LoginScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.pushNamedAndRemoveUntil(
                           context,
-                          Pages.setUpScreen,
+                          Pages.homeScreen,
                           (route) => false,
                         );
                       },
