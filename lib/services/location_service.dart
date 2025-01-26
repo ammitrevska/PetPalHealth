@@ -1,4 +1,5 @@
 import 'package:location/location.dart';
+import 'package:petpal_health/models/lcoation.dart';
 
 class LocationService {
   final Location location = Location();
@@ -20,5 +21,11 @@ class LocationService {
     } else {
       print("Location permission denied");
     }
+  }
+
+  Future<Locations> getCurrentLocation() async {
+    final position = await location.getLocation();
+    return Locations(
+        latitude: position.latitude!, longitude: position.longitude!);
   }
 }
