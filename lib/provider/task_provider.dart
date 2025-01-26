@@ -10,4 +10,9 @@ class TaskProvider with ChangeNotifier {
     _tasks.add(task);
     notifyListeners();
   }
+
+  void deleteTask(int index) {
+    _tasks.removeAt(index);
+    notifyListeners();
+  }
 }

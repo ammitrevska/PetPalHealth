@@ -45,8 +45,6 @@ class _MapScreenState extends State<MapScreen> {
               title: location.name,
               snippet: location.type,
               onTap: () {
-                print("Marker tapped: ${location.name}"); // Debugging line
-
                 _showLocationDetails(location);
               }),
           icon: location.type == 'vet'

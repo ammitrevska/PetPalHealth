@@ -152,15 +152,47 @@ class HomeScreen extends StatelessWidget {
                       )
                     else
                       ...tasks.map(
-                        (task) => ListTile(
-                          title: Text(task.name),
-                          leading: Icon(
-                            task.category.icon,
-                            size: 50.0,
-                            color: Colors.black,
+                        (task) => Dismissible(
+                          key: Key(task.name),
+                          onDismissed: (direction) {
+                            int index = tasks.indexOf(task);
+
+                            Provider.of<TaskProvider>(context, listen: false)
+                                .deleteTask(index);
+                          },
+                          background: Container(
+                            color: Colors.red,
+                            alignment: Alignment.centerLeft,
+                            child: const Padding(
+                              padding: EdgeInsets.only(left: 16.0),
+                              child: Icon(
+                                Icons.delete,
+                                color: Colors.white,
+                                size: 40.0,
+                              ),
+                            ),
                           ),
-                          subtitle: Text(
-                              '${task.category.name} - ${task.repetition} times / day'),
+                          secondaryBackground: Container(
+                              color: Colors.red,
+                              alignment: Alignment.centerRight,
+                              child: const Padding(
+                                padding: EdgeInsets.only(right: 16.0),
+                                child: Icon(
+                                  Icons.delete,
+                                  color: Colors.white,
+                                  size: 40.0,
+                                ),
+                              )),
+                          child: ListTile(
+                            title: Text(task.name),
+                            leading: Icon(
+                              task.category.icon,
+                              size: 50.0,
+                              color: Colors.black,
+                            ),
+                            subtitle: Text(
+                                '${task.category.name} - ${task.repetition} times / day'),
+                          ),
                         ),
                       ),
                     TextButton.icon(
