@@ -1,56 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:petpal_health/constants.dart';
+import 'package:petpal_health/widgets/outlines_icons.dart';
 
 class BottomNavBar {
-  late BuildContext context;
-  BottomNavBar(this.context);
+  final List<String> routes = [
+    Pages.homeScreen,
+    Pages.calendarScreen,
+    Pages.mapScreen,
+    Pages.factsScreen,
+  ];
 
-  goScreen(int newScreen) {
-    switch (newScreen) {
-      case 0:
-        Navigator.popAndPushNamed(context, Pages.homeScreen);
-        break;
-      case 1:
-        Navigator.popAndPushNamed(context, Pages.calendarScreen);
-        break;
-      case 2:
-        Navigator.popAndPushNamed(context, Pages.mapScreen);
-        break;
-      case 3:
-        Navigator.popAndPushNamed(context, Pages.factsScreen);
-        break;
+  void goScreen(BuildContext context, int newScreen) {
+    if (newScreen >= 0 && newScreen < routes.length) {
+      Navigator.pushReplacementNamed(context, routes[newScreen]);
+    } else {
+      debugPrint('Invalid screen index: $newScreen');
     }
   }
 
-  getFooterMenu(int index) {
+  BottomNavigationBar getFooterMenu(BuildContext context, int index) {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       useLegacyColorScheme: false,
       backgroundColor: Colors.transparent,
+      elevation: 0,
       selectedItemColor: kButtonColor,
-      unselectedItemColor: Colors.white,
-      iconSize: 38.0,
+      unselectedItemColor: Colors.transparent,
       currentIndex: index,
-      items: const <BottomNavigationBarItem>[
+      items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.home), // Home icon
-          label: '',
+          icon: customIcon(Icons.home_outlined, Icons.home,
+              isSelected: index == 0),
+          label: ' ',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.calendar_today_rounded), // Calendar icon
-          label: '',
+          icon: customIcon(Icons.calendar_today_outlined, Icons.calendar_today,
+              isSelected: index == 1),
+          label: ' ',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.map), // Map icon
-          label: '',
+          icon: customIcon(Icons.location_on_outlined, Icons.location_on,
+              isSelected: index == 2),
+          label: ' ',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.close), // Cross icon
-          label: '',
+          icon: customIcon(Icons.lightbulb_outline_rounded, Icons.lightbulb,
+              isSelected: index == 3),
+          label: ' ',
         ),
       ],
       onTap: (int index) {
-        goScreen(index);
+        goScreen(context, index);
       },
     );
   }

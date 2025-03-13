@@ -41,7 +41,7 @@ class FactsScreen extends StatelessWidget {
               CatsFactsScreen(),
             ],
           ),
-          bottomNavigationBar: BottomNavBar(context).getFooterMenu(3),
+          bottomNavigationBar: BottomNavBar().getFooterMenu(context, 3),
         ),
       ),
     );

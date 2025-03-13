@@ -100,33 +100,31 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ],
                           )
-                        : Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Padding(
-                                  padding: EdgeInsets.only(left: 16.0),
-                                  child: Text(
-                                    'No pets to display',
-                                    style: TextStyle(
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                        : Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.only(left: 16.0),
+                                child: Text(
+                                  'No pets to display',
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                const SizedBox(height: 8.0),
-                                TextButton.icon(
-                                  onPressed: () {
-                                    Navigator.pushNamed(
-                                      context,
-                                      Pages.addPetScreen,
-                                    );
-                                  },
-                                  label: const Text('Add a pet'),
-                                  icon: const Icon(Icons.add),
-                                ),
-                              ],
-                            ),
+                              ),
+                              const SizedBox(height: 8.0),
+                              TextButton.icon(
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    Pages.addPetScreen,
+                                  );
+                                },
+                                label: const Text('Add a pet'),
+                                icon: const Icon(Icons.add),
+                              ),
+                            ],
                           ),
                   ),
                 ),
@@ -213,7 +211,7 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: BottomNavBar(context).getFooterMenu(0),
+        bottomNavigationBar: BottomNavBar().getFooterMenu(context, 0),
       ),
     );
   }

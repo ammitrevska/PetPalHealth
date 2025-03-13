@@ -151,7 +151,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
             ],
           ),
         ),
-        bottomNavigationBar: BottomNavBar(context).getFooterMenu(1),
+        bottomNavigationBar: BottomNavBar().getFooterMenu(context, 1),
       ),
     );
   }

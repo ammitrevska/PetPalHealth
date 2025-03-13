@@ -111,7 +111,7 @@ class _MapScreenState extends State<MapScreen> {
               const CameraPosition(target: _pGooglePlex, zoom: 13),
           markers: _markers,
         ),
-        bottomNavigationBar: BottomNavBar(context).getFooterMenu(2),
+        bottomNavigationBar: BottomNavBar().getFooterMenu(context, 2),
       ),
     );
   }
